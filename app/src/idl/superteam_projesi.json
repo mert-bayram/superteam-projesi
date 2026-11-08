@@ -1,0 +1,59 @@
+{
+  "address": "CTeg9XE3b6WEMgKJhXtWFZbQWgcEWMp5SWKNrsG42P6R",
+  "metadata": {
+    "name": "superteam_projesi",
+    "version": "0.1.0",
+    "spec": "0.1.0",
+    "description": "Created with Anchor"
+  },
+  "instructions": [
+    {
+      "name": "send_tip",
+      "discriminator": [231, 88, 56, 242, 241, 6, 31, 59],
+      "accounts": [
+        { "name": "donor", "writable": true, "signer": true },
+        { "name": "streamer", "writable": true },
+        {
+          "name": "tip_record",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              { "kind": "const", "value": [116, 105, 112] },
+              { "kind": "account", "path": "donor" },
+              { "kind": "arg", "path": "tip_id" }
+            ]
+          }
+        },
+        { "name": "system_program", "address": "11111111111111111111111111111111" }
+      ],
+      "args": [
+        { "name": "tip_id", "type": "u64" },
+        { "name": "amount", "type": "u64" },
+        { "name": "message", "type": { "option": "string" } }
+      ]
+    }
+  ],
+  "accounts": [
+    { "name": "TipRecord", "discriminator": [43, 243, 62, 130, 183, 4, 81, 185] }
+  ],
+  "errors": [
+    { "code": 6002, "name": "ZeroAmount", "msg": "Tip amount must be greater than zero" },
+    { "code": 6003, "name": "MessageTooLong", "msg": "Message must be at most 140 bytes" },
+    { "code": 6004, "name": "SelfTip", "msg": "Donors cannot tip themselves" }
+  ],
+  "types": [
+    {
+      "name": "TipRecord",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          { "name": "donor", "type": "pubkey" },
+          { "name": "streamer", "type": "pubkey" },
+          { "name": "amount", "type": "u64" },
+          { "name": "tip_id", "type": "u64" },
+          { "name": "message", "type": { "option": "string" } }
+        ]
+      }
+    }
+  ]
+}
