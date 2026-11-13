@@ -38,5 +38,5 @@ Bilgisayarınızda şunların kurulu olduğundan emin olun:
 
 ### 1. Projeyi Klonlayın
 ```bash
-git clone [https://github.com/mert-bayram/superteam-projesi.git](https://github.com/mert-bayram/superteam-projesi.git)
+git clone https://github.com/mert-bayram/superteam-projesi.git
 cd superteam-projesi
